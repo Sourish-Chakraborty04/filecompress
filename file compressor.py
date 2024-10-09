@@ -93,8 +93,10 @@ class CompressionApp:
     def download_file(self):
         # If the file has been compressed or converted
         if self.compressed_file_path:
-            download_path = filedialog.asksaveasfilename(defaultextension=".jpg", initialfile=os.path.basename(self.compressed_file_path))
-            if download_path:
+            if download_path := filedialog.asksaveasfilename(
+                defaultextension=".jpg",
+                initialfile=os.path.basename(self.compressed_file_path),
+            ):
                 os.rename(self.compressed_file_path, download_path)
                 self.status_label.config(text="File downloaded successfully!")
                 self.compressed_file_path = None  # Reset after download
